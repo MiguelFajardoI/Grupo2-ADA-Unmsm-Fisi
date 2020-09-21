@@ -1,0 +1,104 @@
+<html>
+	<head>
+		
+		<title>
+			Topological Sort (Indegree) Visualization
+		</title>
+		
+		<!-- css sheet for how the page is laid out -->
+		
+		<link rel="stylesheet" href="CSS/estilo.css">
+			
+			
+		<!-- jqueury stuff.  Only used for the animation speed slider. -->
+		<link rel="stylesheet" href="ThirdParty/jquery.ui.all.css">
+				
+		<script src="ThirdParty/jquery-1.5.2.min.js"></script>
+		<script src="ThirdParty/jquery-ui-1.8.11.custom.min.js"></script>
+				
+		<!-- Javascript for the actual visualization code -->
+		<script type = "text/javascript" src = "AnimationLibrary/CustomEvents.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/UndoFunctions.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedObject.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedLabel.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedCircle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedRectangle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedLinkedList.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/HighlightCircle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/Line.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/ObjectManager.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimationMain.js"> </script>
+		
+		<script type = "text/javascript" src = "AlgorithmLibrary/Algorithm.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/Graph.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/TopoSortIndegree.js"> </script>
+				
+			
+	 </head> 
+	
+	<body onload="init();" class="VisualizationMainPage">
+        
+        <header>
+            <div>
+                <img src="imagenes/logo.png" alt="Logotipo"  >
+            </div>
+           <section class="titulo">
+            Facultad de Ingenieria de Sistemas e Informatica <br>
+            (Analisis y Diseño de Algoritmo)
+           </section>
+        </header>
+
+		<section  class = "container">
+			<section  class = "main"> 
+				
+				<div id = "algoControlSection">
+					<!-- Table for buttons to control specific animation (insert/find/etc) -->
+					<!-- (filled in by javascript code specific to the animtion) -->
+					<table id="AlgorithmSpecificControls"> </table> 
+				</div>
+				
+					<!-- Drawing canvas where all animation is done.  Note:  can be resized in code -->
+									
+				<canvas id="canvas" width="1000" height="500"></canvas>
+				
+				<div id = "generalAnimationControlSection">
+					<!-- Table for buttons to control general animation (play/pause/undo/etc) -->
+					<!-- (filled in by javascript code, specifically AnimationMain.js)  -->
+
+					<table id="GeneralAnimationControls">  </table>		
+				</div>
+				
+			</section > <!-- mainContent -->
+			<aside>
+                <!--Colocar el pseudocodigo del programa-->
+                Pseudocodigo: <br/><br/>
+                ORDENACIÓN_TOPOLÓGICA(grafo G)<br/>
+                for each vértice u ∈ V[G]do<br/>
+                        estado[u] = NO_VISITADO<br/>
+                        padre[u] = NULL<br/>
+                tiempo =0<br/>
+                for each vértice u ∈ V[G]do<br/>
+                        if estado[u] = NO_VISITADO then<br/>
+                                TOPOLÓGICO-Visitar(u)<br/><br/><br/>
+                TOPOLÓGICO-Visitar(nodo u)<br/>
+                estado[u]=VISITADO<br/>
+                tiempo = tiempo+1<br/>
+                distancia[u] = tiempo<br/>
+                for each v ∈ Adyacencia[u] do<br/>
+                        if estado[v]=NO_VISITADO then<br/>
+                                padre[v]=u<br/>
+                                TOPOLÓGICO-Visitar(v)<br/>
+                estado[u] = TERMINADO<br/>
+                tiempo = tiempo+1<br/>
+                finalización[u] = tiempo<br/>
+                insertar (lista, u)<br/>
+               
+            </aside>
+
+        </section ><!-- container -->
+        <footer>
+            <p>Desarrolladores: <br> -Fajardo Inca Miguel <br> -Garcia Licas Ronald <br>-Chacon Robles Jhony</p>
+        </footer>
+        
+	</body>
+</html>
